@@ -3,22 +3,35 @@
 <h3>The Digital Jesuits Project</h3>
 A repository for code, data, and documentation for the Digital Jesuit Project (DJP). The DJP is a collaboration between Michael Donnay,
 UCL Dept. of Information Studies, and Christopher Donnay, OSU Dept. of Mathematics.
-
-Special thanks to:
-##Include list of people & resources here##
-
-This repository includes:
-1. All of the raw text files of the Maryland-New York Province Catalogues from 1880-1890 and 1915-1925.
-2. The Python files to process those text files.
-3. Terminal commands to run the natural language processing (NLP) annotation and training process.
-4. The Python files to analyze the NLP-processed catalogues.
-5. Copies of all saved files from the above processes.
-
-This ReadMe file contains:
-1. Overview of the project & research question.
-2. Timeline of project development.
-3. Explanation of steps for data pre-processing and processing.
-4. Results
+<br>
+<br>
+This project would not be possible without contributions, advice, or resources from:<br>
+Adam F. Harrison <br>
+I’yanla Brown<br>
+John W. O'Malley, SJ<br>
+David Collins, SJ<br>
+Thomas Gaunt, SJ<br>
+John Ladd<br>
+Jessica Otis<br>
+Daniel Shore<br>
+Tommaso Astarita<br>
+Nicoletta Pireddu<br>
+WJB Mattingly & Python for Digital Humanities<br>
+Explosion AI<br>
+READ Coop<br>
+<br>
+This repository includes:<br>
+1. All of the raw text files of the Maryland-New York Province Catalogues from 1880-1890 and 1915-1925.<br>
+2. The Python files to process those text files.<br>
+3. Terminal commands to run the natural language processing (NLP) annotation and training process.<br>
+4. The Python files to analyze the NLP-processed catalogues.<br>
+5. Copies of all saved files from the above processes.<br>
+<br>
+This ReadMe file contains:<br>
+1. Overview of the project & research question.<br>
+2. Timeline of project development.<br>
+3. Explanation of steps for data pre-processing and processing.<br>
+4. Results<br>
 
 
 <h1>Project Overview</h1>
