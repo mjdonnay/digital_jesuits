@@ -27,21 +27,21 @@ patterns = []
 
 #For each of the individual residences:
 for res in residences:
-		#if residence exists
-    if res != "":
-				#split at the blank spaces to create a new list of each individual word
-        res = res.split(' ')
-				#create a temporary list into which the individual dictionaries will get added
-        temp_list = []
-				#for each word in the residence name, add that word to a dictionary in spacy
-				#formatt and append that dictionary to the temporary list
-        for word in res:
-            temp_dict = {'LOWER': word}
-            temp_list.append(temp_dict)
-        #create a full pattern dictionary in spacy format for each residence
-            pattern = {'label': 'RESID', 'pattern': temp_list}
-        #append that dictionary to the patterns list
-        patterns.append(pattern)
+	#if residence exists
+	if res != "":
+		#split at the blank spaces to create a new list of each individual word
+		res = res.split(' ')
+		#create a temporary list into which the individual dictionaries will get added
+		temp_list = []
+		#for each word in the residence name, add that word to a dictionary in spacy
+		#formatt and append that dictionary to the temporary list
+		for word in res:
+		    temp_dict = {'LOWER': word}
+		    temp_list.append(temp_dict)
+		#create a full pattern dictionary in spacy format for each residence
+		    pattern = {'label': 'RESID', 'pattern': temp_list}
+		#append that dictionary to the patterns list
+		patterns.append(pattern)
 
 # Print full patterns list to check your work
 print(*patterns, sep='\n')
