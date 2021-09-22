@@ -127,3 +127,162 @@ def create_jesuit_dict(file):
     #print(*temporary_jes_dict, sep='\n')
     write_data(f'jesuit_dicts/jesuits_dictionary.json', temporary_jes_dict)
     
+def add_additional_jes(file, year):
+
+    # Load most up to date spacy model
+    nlp = spacy.load('dig_jes_ner_091421_2/model-best')
+
+    # Open Catalogue_with_punct.json file and merge into text object
+    with open(file, "r", encoding='utf-8') as f:
+        data = json.load(f)
+        text = '\n'.join(item["text"] for item in data)
+
+    # Create document object with NLP model
+    doc = nlp(text)
+
+    #Open existing Jesuit list
+    existing_jes = load_data('jesuit_dicts/jesuits_dictionary.json')
+
+    # Create temporary list of Jesuits to add to
+    temporary_jes_list = []
+
+    # Set year
+    year = f'{year}'
+
+    # Iterate through entities in doc object, appending them as strings to temporary list
+    for ent in doc.ents:
+        # print(f'{ent.text} {ent.label_}')
+        temp_string = f'{ent.text} {ent.label_}'
+        # temp_string = temp_string.split(" ")
+        temporary_jes_list.append(temp_string)
+
+    # Print temporary list to check work
+    # print(*temporary_jes_list, sep='\n')
+
+    # Create temporary dictionary to add formatted Jesuits to
+    temporary_jes_dict = {}
+
+    # Create temporary name and residence list to add Jesuits to
+    temporary_name_list = []
+    temporary_resid_list = []
+
+    # Create blank residence string - lives outside for loop so that it holds value until new value assigned
+    resid = ""
+
+    # List of residence terms to check against NLP produced residences
+    locations = load_data('for_export/standard_resid_names.json')
+    resid_codes = load_data('for_export/residence_codes.json')
+
+    # Iterate through each Jesuit in the temporary list
+    for item in temporary_jes_list:
+        # Ignore: Define year as the first 4 characters from first item, ie. year of catalogue
+        # year = f'{temporary_jes_list[0][0:5].strip(" ")}'
+        # Create blank name string
+        name = ''
+
+        # Split each Jesuit in temporary list at " "
+        item_split = item.split()
+
+        # To assign name, check for , to indicate Last, First Middle and then rejoin in correct order
+        if item_split[-1] == 'PERSON':
+            if "," in item:
+                name = f'{" ".join(item_split[1:-1]).title()} {item_split[0].strip(",")}'
+                name = name.strip(",")
+            else:
+                name = f'{" ".join(item_split[0:-1]).title().strip(",")}'
+                name = name.strip(",")
+
+        # To assign residence, check last item in list and rejoin all elements of residence
+        # Check residence against terms list from above to weed out mistakes from NLP model
+        elif item_split[-1] == "RESID":
+            resid_test = f'{" ".join(item_split[0:-1])}'
+            # print(resid_test.lower())
+            for location in locations:
+                # print(location)
+                # Don't include Ex Aliis Provinciis as residence for this b/c we want to avoid double counting Jesuits
+                if location.lower() in resid_test.lower():
+                    resid = locations[location].lower()
+                    resid = resid.strip(",").strip(" ")
+                    # print(resid)
+
+        # If there is a name present in this iteration and the residence hasn't been assigned
+        # that means it's from the first page. Assign it to residence "Provinicial"
+        if resid == "":
+            resid = 'provincial'
+        # Don't append Ex Aliis Provinciis Jesuits to avoid double counting.
+        if resid != "ex aliis provinciis in nostra degentes":
+            # Catches error if Degentes Extra Provinciam gets assigned as a PERSON
+            if name.lower() == 'degentes extra provinciam':
+                resid = 'degentes extra provinciam'
+            # Checks for a few common errors
+            if name != "" and name != 'Degentes Extra Provinciam' and "socius" not in name.lower():
+                if name in existing_jes:
+                    existing_jes[name][year]= resid
+								# Add all the years at once to make it possible to update the way we did in the step above
+                if name not in existing_jes:
+                    existing_jes.update({name: {'1880': 'na',
+                                            '1881': 'na',
+                                            '1882': 'na',
+                                            '1883': 'na',
+                                            '1884': 'na',
+                                            '1885': 'na',
+                                            '1886': 'na',
+                                            '1887': 'na',
+                                            '1888': 'na',
+                                            '1889': 'na',
+                                            '1890': 'na',
+                                            '1915': 'na',
+                                            '1916': 'na',
+                                            '1917': 'na',
+                                            '1918': 'na',
+                                            '1919': 'na',
+                                            '1920': 'na',
+                                            '1921': 'na',
+                                            '1922': 'na',
+                                            '1923': 'na',
+                                            '1924': 'na',
+                                            '1925': 'na',
+                                                  }})
+                    existing_jes[name][year] = resid
+    write_data('jesuit_dicts/jesuits_dictionary.json', existing_jes)
+
+year = '1880'
+file_name = f'text_with_punct/Maryland_{year}_with_punct.json'
+
+#Only run for the first file with 1880
+create_jesuit_dict(file_name)
+
+#Run this to add additional catalogues to list
+#Should go in chronological order
+
+for i in range(81, 91):
+    year = f'18{i}'
+    print(year)
+    file_name = f'text_with_punct/Maryland_{year}_with_punct.json'
+    add_additional_jes(file_name, year)
+for i in range(15, 26):
+    year = f'19{i}'
+    print(year)
+    file_name = f'text_with_punct/Maryland_{year}_with_punct.json'
+    add_additional_jes(file_name, year)
+
+print('Complete')
+
+
+#This code can be used to check is a particular item is missing from a specific catalogue.
+"""
+nlp = spacy.load('dig_jes_ner_091421_2/model-best')
+with open('text_with_punct/Maryland_1880_with_punct.json', "r", encoding='utf-8') as f:
+    data = json.load(f)
+    text = '\n'.join(item["text"] for item in data)
+doc = nlp(text)
+
+for ent in doc.ents:
+    if ent.label_ == "PERSON":
+        print(ent.text, ent.label_)
+    #if ent.label_ == "RESID":
+        #print(ent.text, ent.label_)
+    ent_text = ent.text
+    #if "provi" in ent_text.lower():
+        #print(ent.text, ent.label_)
+"""
