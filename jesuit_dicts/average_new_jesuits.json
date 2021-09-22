@@ -1,0 +1,59 @@
+{
+    "collegium caesariense sancti petri": {
+        "1880s": 0.4112854440021623,
+        "1910s": 0.30759140859140854
+    },
+    "collegium s. crucis": {
+        "1880s": 0.34531485905398945,
+        "1910s": 0.32607248151440144
+    },
+    "collegium georgiopolitanum": {
+        "1880s": 0.3345183253507133,
+        "1910s": 0.26590287931553325
+    },
+    "collegium sancti francisci xaverii": {
+        "1880s": 0.29865227941595723,
+        "1910s": 0.3023773881475119
+    },
+    "collegium fordhamense": {
+        "1880s": 0.2716890944980016,
+        "1910s": 0.3176896950089569
+    },
+    "collegium bostoniense": {
+        "1880s": 0.34349425287356317,
+        "1910s": 0.362022423445808
+    },
+    "collegium baltimorense": {
+        "1880s": 0.35679447364229977,
+        "1910s": 0.30490075535219646
+    },
+    "collegium philadelphiense": {
+        "1880s": 1.0,
+        "1910s": 0.3267301358566248
+    },
+    "collegium washingtoniense": {
+        "1880s": 0.45211996336996335,
+        "1910s": 0.31591445190516404
+    },
+    "schola loyolaea neo eboracensis": {
+        "1910s": 0.30778201018782264
+    },
+    "collegium buffalense": {
+        "1910s": 0.3959022839905193
+    },
+    "schola alta bostoniensis": {
+        "1910s": 0.4296226165904959
+    },
+    "collegium brooklyniense": {
+        "1910s": 0.39332597113031903
+    },
+    "schola alta baltimorensis": {
+        "1910s": 0.7608695652173914
+    },
+    "schola praeparatoria collegii georgiopolitani": {
+        "1910s": 0.8125
+    },
+    "schola alta buffalensis b. petri canisii": {
+        "1910s": 0.31811082798039314
+    }
+}
