@@ -28,14 +28,14 @@ This repository includes:<br>
 5. Copies of all saved files from the above processes.<br>
 <br>
 This ReadMe file contains:<br>
-1. Overview of the project & research question.<br>
+1. Research question.<br>
 2. Timeline of project development.<br>
 3. Explanation of steps for data pre-processing and processing.<br>
 4. Results<br>
 
 
-<h1>Project Overview</h1>
-##Add this
+<h1>Research Question</h1>
+Did the Jesuits in the Maryland-New York Province become less mobile in the period between 1880 and 1925?
 
 <h1>Timeline</h1>
 
