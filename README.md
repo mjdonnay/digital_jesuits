@@ -41,7 +41,7 @@ Did the Jesuits in the Maryland-New York Province become less mobile in the peri
 
 - April 2020: Initital project development and ideation
 
-- April - May 2020: Version 0.1 - Manually data entry
+- April - May 2020: Version 0.1 - Manual data entry
 
 - May 2020: Version 0.2 - Built in OCR with manual correction (Georgetown Interns)
 
