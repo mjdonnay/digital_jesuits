@@ -148,4 +148,4 @@ Did the Jesuits in the Maryland-New York Province become less mobile in the peri
 
     - Change: 0.33 years
 
-    - P-Value: 0.29 (significant)
+    - P-Value: 0.029 (significant)
